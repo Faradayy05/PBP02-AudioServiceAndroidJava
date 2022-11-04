@@ -2,13 +2,16 @@ package com.pbp.audioservice;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.lang.reflect.Field;
@@ -27,6 +30,14 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler_view);
         noMusicTextView = findViewById(R.id.no_songs_text);
+
+        RelativeLayout relativeLayout = findViewById(R.id.mainLayout);
+
+        //Animation Background
+        AnimationDrawable animationDrawable = (AnimationDrawable) relativeLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(2500);
+        animationDrawable.setExitFadeDuration(5000);
+        animationDrawable.start();
 
         //read file raw folder
         Field[] fields = R.raw.class.getFields();
@@ -65,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             recyclerView.setVisibility(View.VISIBLE);
             noMusicTextView.setVisibility(View.GONE);
             recyclerView.setAdapter(new MusicListAdapter(songsList,getApplicationContext()));
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
         }
     }
 

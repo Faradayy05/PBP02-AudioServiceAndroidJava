@@ -27,6 +27,6 @@
         android:maxLines="1"
         android:ellipsize="end"
         tools:text="Music"
-        android:textColor="@color/black"/>
+        android:textColor="@color/white"/>
 
 </RelativeLayout>
